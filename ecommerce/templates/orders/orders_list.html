@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{%block head_title %}
+	User Order History
+{% endblock %}
+{% block content %}
+	<div class="text-center">
+		<br>
+		<h1 class="text-center product_title"> 
+		Order History
+		</h1>
+		<br>
+		{% if order_details %}
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Order Id</th>
+					<th>Order Date</th>
+					<th>Total Amount</th>
+					<th>Order Status</th>
+					<th>Detail</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for order in order_details %}
+				<tr>
+					<td>{{order.code}}</td>
+					<td>{{order.create_at| date:"d M Y" }}</td>
+					<td>INR {{ order.total }}</td>
+					<td>{{ order.status }}</td>
+					<td><a href="{% url 'order_details' order.id %}">View Order</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<h1>You have not placed any order yet.</h1>
+		<br><br>
+		<a href="{% url 'home' %}">Continue Shopping</a>
+		{% endif %}
+
+	</div>
+{% endblock %}
+{% block catalogue%}
+{% endblock %}

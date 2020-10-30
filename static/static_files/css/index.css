@@ -1,0 +1,24 @@
+@media all and (min-width: 992px) {
+    .navbar{ padding-top: 0; padding-bottom: 0; }
+    .navbar .has-megamenu{position:static!important;}
+    .navbar .megamenu{left:0; right:0; width:100%; padding:20px;  }
+    .navbar .nav-link{ padding-top:1rem; padding-bottom:1rem;  }
+  }
+  .navbar-nav .account-icon{
+    margin-right: 1rem !important;
+  }
+*{
+  font-family: 'Fredoka One', cursive;
+}
+.service-icon{
+  display: inline-block;
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: #000;
+  padding: 8px 16px;
+}
+.navbar .navbar-brand{
+  font-size: 25px;
+  font-weight:bold;
+  color:inherit;
+}

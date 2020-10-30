@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+
+{%load static%}
+
+
+{%block head_title %}
+Buy/ Rent
+{% endblock %}
+
+{% block head_styles %}
+<style type="text/css">
+  .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .item-price strike {
+        color: #999;
+        margin-right: 5px;
+      }
+     .item-price span {
+        color: #86bd57;
+        font-size: 110%;
+      }
+      h2 b {
+  color: #ffc000;
+}
+</style>
+
+{% endblock %}
+
+{% block jquery %}
+{% endblock %}
+{% block content %}
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src='{% static "img/3rd.jpg" %}' class="d-block w-100" alt="..." height="400px"/>
+      <div class="container">
+          <div class="carousel-caption text-left">
+            <h1>Purchase Books</h1>
+            <p>Looking for books but do not wanna spend too much money? Don't bother, we've got solutions for you.<br>We bring you the books that have been used by us but are still as good as new. <br>Purchase now, as we have got pretty limited collection of books.</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'Buy' %}" role="button">Buy Now</a></p>
+          </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src='{% static "img/2nd.jpg" %}' class="d-block w-100" alt="..." height="400px"/>
+      <div class="container">
+          <div class="carousel-caption text-left">
+            <h1>Rent Books</h1>
+            <p>Wanna clear the concepts and got the exams over head but still do not wanna spend on buying a new book? <br>Don't bother, we've still got solutions for you.<br>Rent books from us at minimal rates, use them and then return back to us. </p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'Rent' %}" role="button">Rent Now</a></p>
+          </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src='{% static "img/3rd.jpg" %}' class="d-block w-100" alt="..." height="400px"/>
+      <div class="container">
+          <div class="carousel-caption text-left">
+            <h1>Read Our Blog</h1>
+            <p>Confused? Do not know what to do? Don't bother, we are here for your rescue.<br>Listen from your peers who've been there and now ruling their field.<br> Read our Blog for great insights and intellectual thoughts.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+          </div>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+	<section class="services py-5 text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-10 mx-auto col-md-6 col-lg-4 my-3">
+					<span class="service-icon">
+						<i class="fas fa-globe fa-2x"></i>
+					</span>
+					<h5 class="font-weight-bold text-uppercase">
+						Hassle- Free Quick Delivery
+					</h5>
+				</div>
+				<div class="col-10 mx-auto col-md-6 col-lg-4 my-3">
+					<span class="service-icon">
+						<i class="fas fa-truck fa-2x"></i>
+					</span>
+					<h5 class="font-weight-bold text-uppercase">
+						Delivered to your Doorstep
+					</h5>
+				</div>
+				<div class="col-10 mx-auto col-md-6 col-lg-4 my-3">
+					<span class="service-icon">
+						<i class="fas fa-ban fa-2x"></i>
+					</span>
+					<h5 class="font-weight-bold text-uppercase">
+						Non-Tempered Books
+					</h5>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+<!-- Wrapper for slides -->
+{% block catalogue %}
+<div class="container mt-5">
+     <main role="main">
+      <h2>Trending <b>Books</b></h2>
+      <section>
+        <p class="float-right">
+          <a href="{% url 'Buy' %}">Explore more <i class="fas fa-chevron-right"></i></a>
+        </p>
+      </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+        {% for i in product_bottom%}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img class="card-img-top" src='/media/{{i.image}}'alt="Card image cap" width="287.98" height="225">
+            <div class="card-body">
+              <h4>{{i.title}}</h4>
+              <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="{% url 'product_view' i.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                  </div>
+                  <p class="item-price"><strike>Rs.{{i.Current_Price}}</strike> <span>Rs.{{i.Listing_Price}}</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor%}
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+<div class="container mt-5">
+     <main role="main">
+      <h2>Best <b>Sellers</b></h2>
+      <section>
+        <p class="float-right">
+          <a href="{% url 'Buy' %}">Explore more <i class="fas fa-chevron-right"></i></a>
+        </p>
+      </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+        {% for i in product_top%}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img class="card-img-top" src='/media/{{i.image}}'alt="Card image cap" width="287.98" height="225">
+            <div class="card-body">
+              <h4>{{i.title}}</h4>
+              <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="{% url 'product_view' i.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                  </div>
+                  <p class="item-price"><strike>Rs.{{i.Current_Price}}</strike> <span>Rs.{{i.Listing_Price}}</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor%}
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<div class="container mt-5">
+     <main role="main">
+      <h2>Miscellaneous <b>Books</b></h2>
+      <section>
+        <p class="float-right">
+          <a href="{% url 'Buy' %}">Explore more <i class="fas fa-chevron-right"></i></a>
+        </p>
+      </section>
+      <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+        {% for i in product_middle%}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img class="card-img-top" src='/media/{{i.image}}'alt="Card image cap" width="287.98" height="225">
+            <div class="card-body">
+              <h4>{{i.title}}</h4>
+              <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="{% url 'product_view' i.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                  </div>
+                  <p class="item-price"><strike>Rs.{{i.Current_Price}}</strike> <span>Rs.{{i.Listing_Price}}</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor%}
+      </div>
+    </div>
+  </div>
+
+
+
+
+</main>
+</div>
+
+    
+{%endblock%}

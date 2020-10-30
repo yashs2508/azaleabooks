@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{%load static%}
+
+
+{%block head_title %}
+About Us
+{% endblock %}
+
+{% block head_styles %}
+
+
+  <style>
+  body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+  }
+  h2 {
+    /*font-size: 24px;*/
+    text-transform: uppercase;
+    color: #303030;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px lightgrey;
+    letter-spacing: .1em;
+  }
+  h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color: #303030;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }  
+  .jumbotron {
+    background-color: #f4511e;
+    color: #fff;
+    padding: 100px 25px;
+    font-family: Montserrat, sans-serif;
+  }
+  .container-fluid {
+    padding: 60px 50px;
+  }
+  .bg-grey {
+    background-color: #f6f6f6;
+  }
+
+  </style>
+{% endblock %}
+
+{% block content %}
+	<div id="about" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="text-center">About Us</h2><br>
+      <h4>{{about.firstp}}</h4><br>
+      <p>{{about.secondp}}</p>
+      <br>
+      <button type="submit" class="btn btn-lg btn-block btn-outline-dark p-2 my-3" onclick="document.location='{% url 'contact' %}'">Get in Touch</button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid bg-grey">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="text-center">Our Values</h2><br>
+      <h4><strong>MISSION :</strong> {{about.mission}}</h4><br>
+      <p><strong>VISION :</strong> {{about.vision}}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block catalogue %}
+{% endblock %}

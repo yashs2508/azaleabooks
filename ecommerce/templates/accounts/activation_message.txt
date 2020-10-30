@@ -1,0 +1,9 @@
+Hello {{user}}, 
+
+Please confirm your email here to activate your account:
+
+{{ activation_url }}
+
+-Thank You
+
+-Team Azalea Books

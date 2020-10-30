@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width= device-width, initial-scale=1.0">
+	<title>New Order #{{order.code}}- Azalea Books</title>
+	<style type="text/css">
+		table{
+			width: 60%;
+			margin: 0 auto;
+			border-collapse: collapse;
+		}
+		table tr td{
+			border: 1px solid #c1c1c1;
+		}
+		p{
+			padding-right: 50px;
+			padding-left: 50px;
+		}
+	</style>
+</head>
+<body>
+	<center>
+		<h1>Thanks for shopping with us!</h1>
+		<p>This email is to confirm that you have placed an order on Azalea Books.</p>
+	</center>
+	<br>
+	<table class="table table-bordered">
+			<tr>
+				<td valign="top" colspan="2" style="width: 50%;">
+					<b>Order:</b> {{order.code}}<br>
+					<b>Date:</b> {{order.create_at| date:"d M Y"}}<br>
+					<b>Order Total:</b> INR {{order.total}}<br>
+				</td>
+				
+				<td valign="top" colspan="2" style="width: 50%;">
+					<b>Billing Address:</b><br>
+						{{order.first_name}} {{order.last_name}}<br>
+						{{order.address}}<br>
+						{{order.state}}<br>
+						{{order.country}}<br>
+						{{order.pincode}}<br>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Book Title</b></td>
+				<td><b>Quantity</b></td>
+				<td><b>Status</b></td>
+				<td><b>Unit Price</b></td>
+			</tr>
+			{% for rs in orderitems %}
+			<tr>
+				<td>{{rs.product}}</td>
+				<td>{{rs.quantity}}</td>
+				<td>{{rs.status}}</td>
+				<td>INR {{rs.price}}</td>
+			</tr>
+			{% endfor %}
+			<tr>
+				<td valign="top" colspan="3" style="width: 50%;"><b>Total</b></td>
+				<td>INR {{order.total}}</td>
+			</tr>
+			<tr>
+				<td valign="top" colspan="3" style="width: 50%;"><b>Total Paid</b></td>
+				<td>INR {{order.total}}</td>
+			</tr>
+			<tr>
+				<td valign="top" colspan="2" style="width: 50%;"><b>Shipping Address: </b><br>
+				{{order.first_name}} {{order.last_name}}<br>
+				{{order.address}}<br>
+				{{order.state}}<br>
+				{{order.country}}<br>
+				{{order.pincode}}<br>
+			</td>
+			<td valign="top" colspan="2" style="width: 50%;">
+				<b>Payment Details: </b><br>
+				Cash on Delivery
+			</td>
+			</tr>
+		</table>
+
+</body>
+</html>

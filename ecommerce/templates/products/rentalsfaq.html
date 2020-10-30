@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{%block head_title %}
+Rentals Policy
+{% endblock %}
+
+{% block head_styles %}
+  <style>
+/*body { width:1200px; }*/
+.product_title{
+      /*font-size: 20px;*/
+      /*text-transform: uppercase;*/
+      letter-spacing: .1em;
+      padding-top: 50px;
+      padding-bottom: 60px;
+    }
+
+.faqHeader {
+        /*font-size: 27px;*/
+        margin: 20px;
+    }
+
+
+  </style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="panel-group" id="accordion">
+        <h1 class="product_title text-center" style="text-shadow: 2px 2px lightgrey">Rentals Policy</h1>
+        {% for rs in faq %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="color: black;">{{ rs.question }}</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    {{ rs.answer|safe }} 
+                </div>
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block catalogue %}
+{% endblock %}
+{% block jqurey %}
+  <!--  <script>
+        $( function() {
+            $( "#accordion" ).accordion();
+        } );
+    </script> -->
+{% endblock %}

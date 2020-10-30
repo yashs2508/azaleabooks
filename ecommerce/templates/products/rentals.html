@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{%load static%}
+
+
+{%block head_title %}
+Rent
+{% endblock %}
+
+{% block head_styles %}
+<style type="text/css">
+  .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .item-price strike {
+        color: #999;
+        margin-right: 5px;
+      }
+     .item-price span {
+        color: #86bd57;
+        font-size: 110%;
+      }
+      h2 b {
+  color: #ffc000;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+     <main role="main">
+      <h2>All <b>Books</b></h2>
+      <section>
+        <p class="float-right">
+          <a href="{% url 'rentals_policy' %}">Read our Rentals Policy <i class="fas fa-chevron-right"></i></a>
+        </p>
+      </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row">
+        {% for i in products%}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img class="card-img-top" src='/media/{{i.image}}'alt="Card image cap" width="287.98" height="225">
+            <div class="card-body">
+              <h4>{{i.title}}</h4>
+              <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="{% url 'product_view' i.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                  </div>
+                  <p class="item-price"><strike>Rs.{{i.Current_Price}}</strike> <span>Rs.{{i.Listing_Price}}</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor%}
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+
+
+{% endblock %}
+{% block catalogue %}
+{% endblock %}

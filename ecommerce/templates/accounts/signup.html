@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{%block head_title %}
+	Sign Up
+{% endblock %}
+{% block css_styles %}
+	<style type="text/css">
+		.product_title{
+			font-size: 20px;
+			text-transform: uppercase;
+			letter-spacing: .2em;
+			padding-top: 15px;
+			padding-bottom: 10px;
+		}
+		.custom_div{
+			margin-bottom: 20px !important;
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+	<div class="mx-auto mb-5">
+		<br>
+		<h1 class="product_title text-center" style="text-shadow: 2px 2px lightgrey">
+		Create a New Account 
+		</h1>
+		<br>
+		<div class="col-9 col-sm-9 col-md-6 col-lg-5 mx-auto bg-light">
+				<div>
+				<br>
+				<p>Enter the following information to create a new Account</p>
+				<form method="POST">{% csrf_token %}
+				<p>{{ form | crispy }}</p>
+				<button type="submit" name="button" class="btn btn-secondary">Sign Up</button>	
+				</form>
+			</div>
+		</div>
+		<!-- <div class="col-9 col-sm-9 col-md-6 col-lg-5 mx-auto bg-light">
+			<br>
+			<p>Enter the following information to create a new account</p>
+			<form action="POST">{% csrf_token %}
+				{{ form }}
+				<button type="submit" name="button" class="btn btn-secondary">Sign Up</button>
+			</form>
+		</div> -->
+	</div>
+{% endblock %}
+
+{% block catalogue %}
+{% endblock %}

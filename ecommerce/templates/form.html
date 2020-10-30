@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{%block head_title %}
+	Log In
+{% endblock %}
+{% block css_styles %}
+	<style type="text/css">
+		.product_title{
+			font-size: 20px;
+			text-transform: uppercase;
+			letter-spacing: .2em;
+			padding-top: 15px;
+			padding-bottom: 10px;
+		}
+		.custom_div{
+			margin-bottom: 20px !important;
+		}
+	</style>
+{% endblock %}
+{% block content %}
+	<div class="container">
+		<br>
+		<h1 class="product_title text-center py-4" style="text-shadow: 2px 2px lightgrey">Login or Create a New Account</h1>
+		<div class="row">
+			<div class="col-12 col-sm-12 col-lg-6 text-center custom_div py-3">
+				<br>
+				<h2 class="product_title">New<span style="color: #ffc000"> Customer?</span></h2>
+				<br>
+				<p>When you create an account, you can see your orders history.</p>
+				<br>
+				<a href="{% url 'auth_register' %}" class="btn btn-secondary">Create New Account</a>
+				<p></p>
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-6 bg-light px-4 py-1">
+				<div>
+					<br>
+					<h2 class="product_title">Registered Customers Only</h2>
+					<form method="POST">{% csrf_token %}
+					<p>{{ form | crispy }}</p>
+					<button type="submit" name="button" class="btn btn-secondary">Login</button>	
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="py-4">
+			<h4 class="mt-5 mb-3 text-center" style="font-style: italic;">"To sin by silence, when they should protest, makes cowards of men."</h4> 
+			<h6 class=" text-muted text-right">- Ella Wheeler Wilcox</h6>
+		</div>
+
+	</div>
+	<p></p>
+
+{% endblock %}
+
+{% block catalogue%}
+{% endblock %}
