@@ -26,9 +26,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 SECRET_KEY = 'ihd%$%(s1y3-mhq&7zg03zeo290wf%8c=havuz-ehv9094etq$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [] #'.azaleabooks.com'
+ALLOWED_HOSTS = ['azaleabooks.herokuapp.com', '127.0.0.1'] #'.azaleabooks.com'
 
 
 
