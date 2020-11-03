@@ -28,7 +28,7 @@ SECRET_KEY = 'ihd%$%(s1y3-mhq&7zg03zeo290wf%8c=havuz-ehv9094etq$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] #'.azaleabooks.com'
 
 
 
