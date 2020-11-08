@@ -2,10 +2,13 @@
 {%block head_title %}
 	Confirmation
 {% endblock %}
+{% block head_styles %}
+{% endblock %}
 
 {% block content%}
 <div class="container">
-	<h1>{{ page_message }}</h1>
+	<h1 class="py-4" style="text-shadow: 2px 2px lightgrey">
+	{{ page_message }}</h1>
 </div>
 {% endblock%}
 {% block catalogue %}

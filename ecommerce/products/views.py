@@ -5,6 +5,8 @@ from math import ceil
 from django.db.models import Q
 from accounts.forms import ContactForm
 from django.core.mail import EmailMessage
+from django.contrib import messages
+from django.urls import reverse
 
 def home(request):
 	# category = Category.objects.all()
@@ -72,7 +74,7 @@ def contact(request):
 				)
 
 			msg.send()
-			messages.success(request, "Congratulations! Your Order has been placed. It will be delivered soon.")
+			messages.success(request, "Congratulations! Your message has been sent. We will contact you back soon.")
 			return HttpResponseRedirect(reverse("home"))
 	else:	
 		form = ContactForm() 

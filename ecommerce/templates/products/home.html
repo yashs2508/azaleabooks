@@ -28,6 +28,14 @@ Buy/ Rent
       h2 b {
   color: #ffc000;
 }
+@media(max-width: 700px){
+  h1{
+    font-size: 30px;
+  }
+  p{
+    font-size: 15px;
+  }
+}
 </style>
 
 {% endblock %}
@@ -133,7 +141,7 @@ Buy/ Rent
         {% for i in product_bottom%}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src='/media/{{i.image}}'alt="Card image cap" width="287.98" height="225">
+            <img class="card-img-top" src='{{i.image.url}}'alt="Card image cap" width="287.98" height="225">
             <div class="card-body">
               <h4>{{i.title}}</h4>
               <div class="d-flex justify-content-between align-items-center">
@@ -168,7 +176,7 @@ Buy/ Rent
         {% for i in product_top%}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src='/media/{{i.image}}'alt="Card image cap" width="287.98" height="225">
+            <img class="card-img-top" src='{{i.image.url}}'alt="Card image cap" width="287.98" height="225">
             <div class="card-body">
               <h4>{{i.title}}</h4>
               <div class="d-flex justify-content-between align-items-center">
@@ -203,7 +211,7 @@ Buy/ Rent
         {% for i in product_middle%}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src='/media/{{i.image}}'alt="Card image cap" width="287.98" height="225">
+            <img class="card-img-top" src='{{i.image.url}}'alt="Card image cap" width="287.98" height="225">
             <div class="card-body">
               <h4>{{i.title}}</h4>
               <div class="d-flex justify-content-between align-items-center">

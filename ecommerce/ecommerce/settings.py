@@ -26,9 +26,10 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 SECRET_KEY = 'ihd%$%(s1y3-mhq&7zg03zeo290wf%8c=havuz-ehv9094etq$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['azaleabooks.herokuapp.com', '127.0.0.1'] #'.azaleabooks.com'
+
+ALLOWED_HOSTS = ['azaleabooks.herokuapp.com', '127.0.0.1', '.azaleabooks.com'] #'.azaleabooks.com'
 
 
 
@@ -36,14 +37,14 @@ DEFAULT_FROM_EMAIL = "Azalea Books <help.azaleabooks@gmail.com>"
 
 EMAIL_HOST = "smtp.gmail.com" 
 EMAIL_HOST_USER = "help.azaleabooks@gmail.com"
-EMAIL_HOST_PASSWORD =  "Vis_Aza_Sax$25"
+EMAIL_HOST_PASSWORD =  "okggfmfxgjwmvepw"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
-SITE_URL = "https://azaleabooks.herokuapp.com"
-if DEBUG:
-    SITE_URL = "https://127.0.0.1:8000"
+SITE_URL = "http://azaleabooks.herokuapp.com"
+# if DEBUG:
+#     SITE_URL = "http://127.0.0.1:8000"
 
 
 # Application definition
@@ -65,11 +66,14 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'mptt',
     'ckeditor',
+    'storages',
     # 'stripe',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -105,12 +109,12 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
-SOUTH_DATABASE_ADAPTERS = {
-    'default': 'south.db.sqlite3'
-}
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600) #postgreSQL Database in heroku
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -146,20 +150,43 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+#S3 BUCKETS CONFIG
+
+AWS_ACCESS_KEY_ID = 'AKIA3UNEM7IGG6X3TVMN'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'azaleabooks-bucket'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_CUSTOM_DOMAIN = f"azaleabooks-bucket.s3.amazonaws.com"
+PUBLIC_MEDIA_LOCATION = 'media'
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+
+STATIC_ROOT = os.path.join(BASE_DIR,"static","static_root")
+
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static","media")
+# MEDIA_URL = '/media/'
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+MEDIA_ROOT = os.path.join(BASE_DIR,"static","media")
 # MEDIA_ROOT = 'C:/Users/yash/Desktop/azalea_books/static/media/'
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static","static_root")
 
 
 STATICFILES_DIRS = [
-    os.path.join(os.path.dirname(BASE_DIR),"static","static_files")
+    os.path.join(BASE_DIR,"static","static_files")
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # STRIPE_SECRET_KEY = "sk_test_51HL0NeLZHwJaveHYs5TrQTioiqkpMIYgQjo02HsSgAnJv6BtllkUIGObxwxBiJOTSySu1IekPpCFTmt0fPYutlv40072YbiYZz"
 # STRIPE_PUBLISHABLE_KEY = "pk_test_51HL0NeLZHwJaveHY9ZeMTrvYHpCNZ3ofiGGRNmMCVxFbnnzXp0HXN8P1YxN8DCn7Qs2J4kQwcKnRRLjahIvh2OjS00ycvzSSx8"
@@ -185,5 +212,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
+
+
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+django_heroku.settings(locals(), staticfiles=False)
