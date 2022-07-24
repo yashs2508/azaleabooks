@@ -37,7 +37,7 @@ DEFAULT_FROM_EMAIL = "Azalea Books <help.azaleabooks@gmail.com>"
 
 EMAIL_HOST = "smtp.gmail.com" 
 EMAIL_HOST_USER = "help.azaleabooks@gmail.com"
-EMAIL_HOST_PASSWORD =  "okggfmfxgjwmvepw"
+EMAIL_HOST_PASSWORD =  "************"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -153,8 +153,8 @@ USE_TZ = True
 
 #S3 BUCKETS CONFIG
 
-AWS_ACCESS_KEY_ID = 'AKIA3UNEM7IGG6X3TVMN'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = '*******************'
+AWS_SECRET_ACCESS_KEY = '***************'
 AWS_STORAGE_BUCKET_NAME = 'azaleabooks-bucket'
 
 AWS_S3_FILE_OVERWRITE = False
